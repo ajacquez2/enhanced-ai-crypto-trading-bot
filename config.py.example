@@ -1,0 +1,249 @@
+"""
+Enhanced AI Cryptocurrency Trading Bot Configuration Template
+Copy this file to config.py and fill in your actual credentials
+"""
+
+# =============================================================================
+# API CREDENTIALS - REQUIRED
+# =============================================================================
+
+# AI Provider Selection
+AI_PROVIDER = "claude"  # Options: "openai", "claude", "demo"
+
+# OpenAI API Configuration
+OPENAI_API_KEY = "your-openai-api-key-here"  # Get from https://platform.openai.com/api-keys
+OPENAI_MODEL_NAME = "gpt-4o-mini"  # Options: gpt-4o-mini, gpt-4o, gpt-3.5-turbo
+
+# Claude API Configuration (Alternative to OpenAI)
+CLAUDE_API_KEY = "your-claude-api-key-here"  # Get from https://console.anthropic.com/
+CLAUDE_MODEL_NAME = "claude-3-5-sonnet-20241022"  # Latest Claude 3.5 Sonnet
+
+# Robinhood Account Credentials - DEMO MODE RECOMMENDED
+ROBINHOOD_USERNAME = "your-email@example.com"
+ROBINHOOD_PASSWORD = "your-password-here"
+ROBINHOOD_MFA_SECRET = "DEMO_MODE_NO_MFA_NEEDED"  # Base32 encoded MFA secret
+
+# =============================================================================
+# OPERATION MODE - START WITH DEMO!
+# =============================================================================
+
+# Operation Modes: "demo", "manual", "auto"
+# demo: Simulates trades without executing them (RECOMMENDED)
+# manual: Requires confirmation before each trade
+# auto: Fully automated trading (use with extreme caution)
+MODE = "demo"  # ALWAYS START WITH DEMO MODE
+
+# =============================================================================
+# TRADING LIMITS AND SAFETY SETTINGS
+# =============================================================================
+
+# Trading Amount Limits (USD) - CONSERVATIVE FOR SAFETY
+MIN_BUYING_AMOUNT_USD = 1.0
+MAX_BUYING_AMOUNT_USD = 10.0  # Start small!
+MIN_SELLING_AMOUNT_USD = 1.0
+MAX_SELLING_AMOUNT_USD = 10.0
+
+# Portfolio Management - CONSERVATIVE LIMITS
+PORTFOLIO_LIMIT = 5  # Maximum 5 crypto positions
+WATCHLIST_OVERVIEW_LIMIT = 10  # Analyze 10 cryptos max
+
+# Cryptocurrency Focus (70+ supported)
+CRYPTO_FOCUS = [
+    "BITCOIN", "ETHEREUM", "DOGECOIN", "LITECOIN", "CARDANO",
+    "SOLANA", "POLYGON", "CHAINLINK", "UNISWAP", "SHIBA-INU"
+]
+
+# =============================================================================
+# TECHNICAL ANALYSIS SETTINGS
+# =============================================================================
+
+# RSI Settings
+RSI_PERIOD = 14
+RSI_OVERSOLD = 30
+RSI_OVERBOUGHT = 70
+
+# Moving Average Settings
+MA_SHORT_PERIOD = 10
+MA_LONG_PERIOD = 50
+
+# VWAP Settings
+VWAP_PERIOD = 20
+
+# =============================================================================
+# RISK MANAGEMENT SETTINGS
+# =============================================================================
+
+# Pattern Day Trading Protection
+PDT_PROTECTION_ENABLED = True
+MAX_DAY_TRADES_PER_WEEK = 3  # Conservative limit
+
+# Stop Loss and Take Profit
+STOP_LOSS_PERCENTAGE = 0.05  # 5% stop loss
+TAKE_PROFIT_PERCENTAGE = 0.10  # 10% take profit
+
+# Position Sizing
+MAX_POSITION_SIZE_PERCENTAGE = 0.20  # Max 20% of portfolio per crypto
+
+# =============================================================================
+# AI DECISION MAKING SETTINGS
+# =============================================================================
+
+# AI Analysis Parameters
+AI_CONFIDENCE_THRESHOLD = 0.7  # Minimum confidence for trade execution
+AI_ANALYSIS_DEPTH = "detailed"  # Options: basic, detailed, comprehensive
+
+# Decision Making Weights
+TECHNICAL_ANALYSIS_WEIGHT = 0.4
+FUNDAMENTAL_ANALYSIS_WEIGHT = 0.3
+SENTIMENT_ANALYSIS_WEIGHT = 0.2
+AI_RECOMMENDATION_WEIGHT = 0.1
+
+# =============================================================================
+# TIMING AND SCHEDULING SETTINGS
+# =============================================================================
+
+# Trading Schedule
+RUN_INTERVAL_SECONDS = 300  # Check every 5 minutes
+CRYPTO_TRADING_24_7 = True  # Crypto markets are 24/7
+
+# Timezone
+TIMEZONE = "US/Eastern"
+
+# =============================================================================
+# LOGGING AND MONITORING SETTINGS
+# =============================================================================
+
+# Logging Configuration
+LOG_LEVEL = "INFO"  # Options: DEBUG, INFO, WARNING, ERROR
+LOG_TO_FILE = True
+LOG_FILE_PATH = "enhanced_trading.log"
+LOG_MAX_SIZE_MB = 100
+LOG_BACKUP_COUNT = 5
+
+# Monitoring and Alerts
+ALERT_ON_LARGE_TRADES = True
+ALERT_THRESHOLD_USD = 50.0
+SEND_EMAIL_ALERTS = False  # Set to True if you want email notifications
+
+# =============================================================================
+# ADVANCED SETTINGS
+# =============================================================================
+
+# API Rate Limiting
+COINGECKO_API_DELAY = 2.0  # Seconds between API calls
+OPENAI_API_DELAY = 0.5  # Seconds between OpenAI calls
+CLAUDE_API_DELAY = 0.5  # Seconds between Claude calls
+
+# Data Sources
+USE_COINGECKO = True  # Primary crypto data source
+USE_YAHOO_FINANCE = False  # Backup data source
+
+# =============================================================================
+# DEVELOPMENT AND TESTING SETTINGS
+# =============================================================================
+
+# Debug Settings
+DEBUG_MODE = False
+VERBOSE_LOGGING = True
+SAVE_AI_RESPONSES = True  # Save AI responses for analysis
+
+# Testing Settings
+PAPER_TRADING_BALANCE = 1000.0  # Starting balance for demo mode
+SIMULATE_MARKET_CONDITIONS = False
+
+# =============================================================================
+# SECURITY SETTINGS
+# =============================================================================
+
+# Session Management
+SESSION_TIMEOUT_MINUTES = 60
+AUTO_LOGOUT_ON_INACTIVITY = True
+
+# =============================================================================
+# PERFORMANCE MONITORING
+# =============================================================================
+
+# Performance Tracking
+TRACK_PERFORMANCE = True
+PERFORMANCE_REPORT_FREQUENCY = "daily"  # daily, weekly, monthly
+BENCHMARK_SYMBOL = "BITCOIN"  # Bitcoin for comparison
+
+# Analytics
+ENABLE_ANALYTICS = True
+ANALYTICS_RETENTION_DAYS = 365
+
+# =============================================================================
+# COMPLIANCE AND LEGAL
+# =============================================================================
+
+# Regulatory Compliance
+COMPLY_WITH_PDT_RULES = True
+MAXIMUM_LEVERAGE = 1.0  # No leverage by default
+RECORD_ALL_TRANSACTIONS = True
+
+# Risk Disclaimers
+ACKNOWLEDGE_RISKS = False  # Set to True after reading all disclaimers
+EDUCATIONAL_PURPOSE_ONLY = True
+
+# =============================================================================
+# HELPER FUNCTIONS
+# =============================================================================
+
+def get_trading_limits():
+    """Get trading limits configuration"""
+    return {
+        'min_buy': MIN_BUYING_AMOUNT_USD,
+        'max_buy': MAX_BUYING_AMOUNT_USD,
+        'min_sell': MIN_SELLING_AMOUNT_USD,
+        'max_sell': MAX_SELLING_AMOUNT_USD,
+        'portfolio_limit': PORTFOLIO_LIMIT,
+        'watchlist_limit': WATCHLIST_OVERVIEW_LIMIT,
+        'ai_confidence_threshold': AI_CONFIDENCE_THRESHOLD
+    }
+
+def get_ai_config():
+    """Get AI configuration"""
+    return {
+        'provider': AI_PROVIDER,
+        'openai_api_key': OPENAI_API_KEY,
+        'openai_model': OPENAI_MODEL_NAME,
+        'claude_api_key': CLAUDE_API_KEY,
+        'claude_model': CLAUDE_MODEL_NAME,
+        'confidence_threshold': AI_CONFIDENCE_THRESHOLD
+    }
+
+# =============================================================================
+# IMPORTANT NOTES
+# =============================================================================
+
+"""
+IMPORTANT SECURITY NOTES:
+1. Never commit config.py to version control
+2. Use environment variables for production deployments
+3. Regularly rotate API keys and passwords
+4. Enable 2FA on all accounts
+5. Monitor account activity regularly
+
+IMPORTANT TRADING NOTES:
+1. START WITH DEMO MODE and small amounts
+2. This is for educational purposes only
+3. All cryptocurrency trading involves significant risk
+4. Never invest more than you can afford to lose
+5. Monitor the bot continuously during operation
+6. Cryptocurrency markets are highly volatile
+7. Past performance does not guarantee future results
+
+SUPPORTED CRYPTOCURRENCIES (70+):
+- Bitcoin (BTC), Ethereum (ETH), Dogecoin (DOGE)
+- Litecoin (LTC), Bitcoin Cash (BCH), Ethereum Classic (ETC)
+- Cardano (ADA), Solana (SOL), Polygon (MATIC)
+- Chainlink (LINK), Uniswap (UNI), Shiba Inu (SHIB)
+- And 60+ more popular cryptocurrencies!
+
+LEGAL DISCLAIMER:
+This software is provided for educational purposes only.
+The creators are not responsible for any financial losses.
+Cryptocurrency trading involves substantial risk of loss.
+Use at your own risk and comply with all applicable laws.
+Consult with a financial advisor before making investment decisions.
+"""
