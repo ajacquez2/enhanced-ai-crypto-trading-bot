@@ -1,0 +1,46 @@
+# Enhanced AI Cryptocurrency Trading Bot Requirements
+
+# Core Dependencies
+flask==2.3.3
+flask-socketio==5.3.6
+requests==2.31.0
+numpy==1.24.3
+pandas==2.0.3
+
+# AI and Machine Learning
+openai==1.3.7
+anthropic==0.7.8
+tensorflow==2.13.0
+transformers==4.35.2
+scikit-learn==1.3.0
+
+# Data Processing
+scipy==1.11.3
+matplotlib==3.7.2
+seaborn==0.12.2
+
+# Web and Networking
+werkzeug==2.3.7
+gevent==23.7.0
+gevent-websocket==0.10.1
+urllib3==2.0.4
+
+# Utilities
+python-dotenv==1.0.0
+colorama==0.4.6
+tqdm==4.66.1
+click==8.1.7
+
+# Optional: Advanced Features
+# ta-lib==0.4.25  # Technical Analysis Library (requires separate installation)
+# yfinance==0.2.18  # Yahoo Finance data
+# ccxt==4.1.25  # Cryptocurrency exchange library
+
+# Development Dependencies (optional)
+# pytest==7.4.2
+# black==23.9.1
+# flake8==6.1.0
+
+# Note: Some packages may require specific versions based on your Python version
+# Python 3.8+ recommended
+# For Windows users, you may need Visual Studio Build Tools for some packages
