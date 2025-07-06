@@ -1,218 +1,233 @@
 # 🚀 Enhanced AI Cryptocurrency Trading Bot
 
-**Professional-Grade AI-Powered Cryptocurrency Trading System**
+**Professional-Grade AI-Powered Cryptocurrency Trading with Dual AI Integration**
 
-## ✨ Features
+[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://python.org)
+[![AI](https://img.shields.io/badge/AI-OpenAI%20%2B%20Claude-green.svg)](https://openai.com)
+[![Crypto](https://img.shields.io/badge/Crypto-70%2B%20Supported-orange.svg)](https://coingecko.com)
+[![License](https://img.shields.io/badge/License-Educational-red.svg)](#license)
 
-### 🤖 Dual AI Integration
-- **OpenAI GPT-4o/GPT-4o-mini** support
-- **Claude 3.5 Sonnet** integration
-- Real-time AI model switching
-- Intelligent fallback systems
+## 🌟 Key Features
 
-### 📊 Professional Trading Engine
-- **70+ Cryptocurrency Support** - All major cryptos available on Robinhood
-- **Technical Analysis Engine** - RSI, MACD, Bollinger Bands
-- **PDT Protection System** - Pattern Day Trading compliance
-- **Advanced Risk Management** - Stop-loss, take-profit, position sizing
-- **Real-time Market Data** - Live price feeds from CoinGecko
+### 🧠 **Dual AI Integration**
+- **OpenAI GPT-4** - Advanced reasoning and market analysis
+- **Claude 3.5 Sonnet** - Professional-grade decision making
+- **Demo Mode** - Risk-free testing with simulated AI responses
+- **Dynamic AI Switching** - Choose the best AI for your strategy
 
-### 🎯 Trading Modes
-- **Demo Mode** - Safe paper trading for testing
-- **Manual Mode** - AI recommendations with human approval
-- **Auto Mode** - Fully autonomous trading (use with caution)
+### 💰 **70+ Cryptocurrency Support**
+- Bitcoin (BTC), Ethereum (ETH), Dogecoin (DOGE)
+- Solana (SOL), Cardano (ADA), Polygon (MATIC)
+- Chainlink (LINK), Uniswap (UNI), Shiba Inu (SHIB)
+- And 60+ more popular cryptocurrencies!
 
-### 🖥️ Professional Dashboard
-- **Real-time WebSocket Updates** - Live portfolio and price data
-- **Beautiful Modern UI** - Robinhood-inspired design
-- **AI Decision Tracking** - Live confidence scores and reasoning
-- **Portfolio Analytics** - P&L tracking, success rates, trade history
-- **Mobile Responsive** - Works on all devices
+### 📊 **Professional Dashboard**
+- **Real-time WebSocket Updates** - Live market data and AI analysis
+- **Beautiful Modern UI** - Professional trading interface
+- **Portfolio Tracking** - Monitor your positions and performance
+- **AI Analysis Feed** - See AI decisions in real-time
+- **Mobile Responsive** - Trade from anywhere
+
+### 🛡️ **Advanced Risk Management**
+- **Pattern Day Trading Protection** - Prevent PDT violations
+- **Professional Risk Manager** - Institutional-grade risk controls
+- **Stop Loss & Take Profit** - Automated position management
+- **Position Sizing** - Smart portfolio allocation
 
 ## 🚀 Quick Start
 
-### 1. Clone Repository
+### 1. **Clone the Repository**
 ```bash
 git clone https://github.com/ajacquez2/enhanced-ai-crypto-trading-bot.git
 cd enhanced-ai-crypto-trading-bot
 ```
 
-### 2. Install Dependencies
+### 2. **Install Dependencies**
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. Configure Settings
+### 3. **Configure API Keys**
 ```bash
+# Copy the configuration template
 cp config.py.example config.py
-# Edit config.py with your API keys and settings
+
+# Edit config.py with your API keys
+# Get OpenAI API key: https://platform.openai.com/api-keys
+# Get Claude API key: https://console.anthropic.com/
 ```
 
-### 4. Run the Bot
+### 4. **Start Trading (Demo Mode)**
 ```bash
-python openai_powered_trading_bot.py
+python main.py
 ```
 
-### 5. Access Dashboard
-Open your browser to: `http://localhost:5005`
+### 5. **Access Dashboard**
+Open your browser to: **http://localhost:5005**
 
-## ⚙️ Configuration
+## 📋 Configuration
 
-### API Keys Required
-- **OpenAI API Key** - For GPT-4o/GPT-4o-mini analysis
-- **Claude API Key** - For Claude 3.5 Sonnet analysis
-- **Robinhood Credentials** - For live trading (demo mode works without)
+### **Essential Settings** (config.py)
 
-### Trading Settings
 ```python
-# Operation Mode
-MODE = "demo"  # Start with demo mode!
+# AI Provider Selection
+AI_PROVIDER = "claude"  # Options: "openai", "claude", "demo"
 
-# Trading Limits (Conservative defaults)
-MIN_BUYING_AMOUNT_USD = 1.0
-MAX_BUYING_AMOUNT_USD = 3.0
-PORTFOLIO_LIMIT = 2  # Max 2 positions
+# API Keys
+OPENAI_API_KEY = "your-openai-api-key-here"
+CLAUDE_API_KEY = "your-claude-api-key-here"
 
-# AI Settings
-AI_PROVIDER = "claude"  # or "openai"
-AI_CONFIDENCE_THRESHOLD = 0.3
+# Trading Mode
+MODE = "demo"  # ALWAYS START WITH DEMO MODE
+
+# Trading Limits (Conservative)
+MAX_BUYING_AMOUNT_USD = 10.0  # Start small!
+PORTFOLIO_LIMIT = 5  # Maximum positions
+
+# AI Confidence Threshold
+AI_CONFIDENCE_THRESHOLD = 0.7  # Minimum confidence for trades
 ```
+
+## 🎯 Trading Modes
+
+### 🧪 **Demo Mode** (Recommended)
+- **Risk-Free Testing** - No real money involved
+- **Full Functionality** - All features available
+- **Paper Trading** - Simulated $1,000 starting balance
+- **Perfect for Learning** - Understand the system safely
+
+### 👤 **Manual Mode** (Advanced)
+- **Confirmation Required** - Approve each trade
+- **Real Money** - Actual cryptocurrency trading
+- **Full Control** - You decide on every trade
+- **Recommended for Experienced Users**
+
+### 🤖 **Auto Mode** (Expert Only)
+- **Fully Automated** - AI makes all decisions
+- **High Risk** - Use with extreme caution
+- **Continuous Trading** - 24/7 operation
+- **Only for Experts** - Requires deep understanding
+
+## 🧠 AI Analysis
+
+### **How It Works**
+1. **Market Data Collection** - Real-time price, volume, and market cap data
+2. **Technical Analysis** - RSI, moving averages, VWAP calculations
+3. **AI Processing** - Advanced AI models analyze market conditions
+4. **Decision Making** - Buy/Sell/Hold decisions with confidence scores
+5. **Risk Assessment** - Professional risk management validation
+6. **Trade Execution** - Automated or manual trade execution
+
+### **AI Providers**
+
+#### 🤖 **OpenAI GPT-4**
+- **Strengths**: Advanced reasoning, market pattern recognition
+- **Best For**: Complex market analysis, trend identification
+- **Models**: GPT-4o-mini, GPT-4o, GPT-3.5-turbo
+
+#### 🧠 **Claude 3.5 Sonnet**
+- **Strengths**: Professional analysis, risk assessment
+- **Best For**: Conservative trading, risk management
+- **Models**: Claude-3-5-sonnet-20241022, Claude-3-haiku
+
+#### 🎯 **Demo Mode**
+- **Strengths**: Risk-free learning, consistent behavior
+- **Best For**: Testing strategies, learning the system
+- **Logic**: Simple momentum-based decisions
+
+## 📊 Dashboard Features
+
+### **Real-Time Monitoring**
+- 🔴 **Live Connection Status** - WebSocket connection indicator
+- 📈 **Portfolio Overview** - Cash balance, total value, positions
+- 🤖 **AI Analysis Feed** - Real-time AI decisions and reasoning
+- 📋 **Trade History** - Recent trades with timestamps
+- 🎯 **Confidence Indicators** - Visual confidence bars for each decision
+
+### **Interactive Controls**
+- 🔄 **Force Analysis** - Trigger immediate market analysis
+- 📊 **Refresh Data** - Update portfolio and market data
+- 📱 **Mobile Responsive** - Works on all devices
 
 ## 🛡️ Safety Features
 
-### Risk Management
-- **Position Size Limits** - Maximum 20% of portfolio per trade
-- **Stop Loss Protection** - Automatic 5% stop loss
-- **Take Profit Targets** - 10% profit taking
-- **PDT Compliance** - Pattern Day Trading protection
+### **Built-in Protections**
+- ✅ **Demo Mode Default** - Always starts in safe mode
+- ✅ **Conservative Limits** - Small trade amounts by default
+- ✅ **PDT Protection** - Prevents pattern day trading violations
+- ✅ **Position Limits** - Maximum number of concurrent positions
+- ✅ **Stop Loss** - Automatic loss prevention
+- ✅ **Take Profit** - Automatic profit taking
 
-### Demo Mode
-- **Paper Trading** - No real money at risk
-- **Full Feature Testing** - All functionality without risk
-- **Performance Tracking** - Real metrics with fake money
+### **Risk Management**
+- 📊 **Portfolio Diversification** - Spread risk across multiple assets
+- 💰 **Position Sizing** - Smart allocation based on portfolio size
+- 🎯 **Confidence Thresholds** - Only trade with high AI confidence
+- ⏰ **Time-based Controls** - Limit trading frequency
 
 ## 📈 Supported Cryptocurrencies
 
-**Major Cryptos (70+)**
-- Bitcoin (BTC), Ethereum (ETH), Dogecoin (DOGE)
-- Litecoin (LTC), Bitcoin Cash (BCH), Ethereum Classic (ETC)
-- Shiba Inu (SHIB), Cardano (ADA), Solana (SOL)
-- Polygon (MATIC), Chainlink (LINK), Uniswap (UNI)
-- And 60+ more popular cryptocurrencies!
+### **Major Cryptocurrencies**
+- Bitcoin (BTC), Ethereum (ETH), Litecoin (LTC)
+- Bitcoin Cash (BCH), Ethereum Classic (ETC)
+- Dogecoin (DOGE), Shiba Inu (SHIB)
 
-## 🎨 Dashboard Features
+### **DeFi Tokens**
+- Uniswap (UNI), Aave (AAVE), Compound (COMP)
+- Maker (MKR), Curve (CRV), Balancer (BAL)
+- SushiSwap (SUSHI), 1inch (1INCH)
 
-### Real-time Updates
-- **Live Price Feeds** - Real-time cryptocurrency prices
-- **AI Decision Stream** - Live AI analysis and recommendations
-- **Portfolio Tracking** - Real-time P&L and performance metrics
-- **WebSocket Integration** - Instant updates without page refresh
+### **Smart Contract Platforms**
+- Solana (SOL), Cardano (ADA), Polkadot (DOT)
+- Polygon (MATIC), Avalanche (AVAX)
+- Near Protocol (NEAR), Internet Computer (ICP)
 
-### Professional UI
-- **Dark Theme** - Easy on the eyes for long trading sessions
-- **Responsive Design** - Works perfectly on desktop and mobile
-- **Interactive Charts** - Visual price and performance data
-- **Confidence Indicators** - AI confidence levels with visual bars
+### **And Many More!**
+- Chainlink (LINK), The Graph (GRT), Filecoin (FIL)
+- Theta (THETA), VeChain (VET), Zilliqa (ZIL)
+- **70+ total cryptocurrencies supported!**
 
-## 🔧 Technical Architecture
+## 🚨 Important Disclaimers
 
-### AI Analysis Pipeline
-1. **Market Data Collection** - Real-time price and volume data
-2. **Technical Analysis** - RSI, MACD, Bollinger Bands calculation
-3. **AI Processing** - OpenAI/Claude analysis with structured prompts
-4. **Risk Assessment** - Professional risk management evaluation
-5. **Decision Execution** - Automated or manual trade execution
+### **⚠️ EDUCATIONAL PURPOSE ONLY**
+This software is provided for **educational and research purposes only**. It is not intended as financial advice or a recommendation to buy or sell any cryptocurrency.
 
-### Professional Components
-- **TechnicalAnalysisEngine** - Advanced technical indicators
-- **PDTProtectionSystem** - Pattern Day Trading compliance
-- **ProfessionalRiskManager** - Institutional-grade risk management
-- **WebSocket Dashboard** - Real-time data streaming
+### **💰 FINANCIAL RISK WARNING**
+- **High Risk**: Cryptocurrency trading involves substantial risk of loss
+- **Volatile Markets**: Crypto prices can change rapidly and unpredictably
+- **No Guarantees**: Past performance does not guarantee future results
+- **Potential Loss**: You may lose all invested capital
 
-## 📊 Performance Tracking
+### **🤖 AI LIMITATIONS**
+- **Not Perfect**: AI models can make incorrect predictions
+- **Market Unpredictability**: No AI can predict all market movements
+- **Technical Issues**: Software bugs or API failures can occur
+- **Continuous Monitoring**: Always supervise automated trading
 
-### Analytics Dashboard
-- **Total P&L** - Profit and loss tracking
-- **Success Rate** - Win/loss percentage
-- **Trade History** - Complete transaction log
-- **AI Performance** - Model accuracy tracking
-- **Risk Metrics** - Drawdown and volatility analysis
+### **📋 LEGAL COMPLIANCE**
+- **Local Laws**: Ensure compliance with your local regulations
+- **Tax Obligations**: Report all trading activities as required
+- **Professional Advice**: Consult with financial advisors
+- **Age Requirements**: Must be of legal age to trade
 
-## ⚠️ Important Disclaimers
+## 🔧 Technical Requirements
 
-### Educational Purpose
-This software is provided for **educational purposes only**. Cryptocurrency trading involves significant risk and you should never invest more than you can afford to lose.
-
-### Risk Warning
-- **Start with Demo Mode** - Always test thoroughly before live trading
-- **Small Amounts Only** - Begin with minimal position sizes
-- **Monitor Continuously** - Never leave automated trading unattended
-- **Understand the Risks** - Cryptocurrency markets are highly volatile
-
-### Legal Compliance
-- **Pattern Day Trading Rules** - Built-in PDT protection
-- **Regulatory Compliance** - Follow all applicable laws
-- **Tax Implications** - Track all trades for tax reporting
-- **Terms of Service** - Comply with broker terms of service
-
-## 🛠️ Development
-
-### Requirements
-- Python 3.8+
-- Flask & SocketIO for web interface
-- OpenAI/Anthropic API access
-- Internet connection for market data
-
-### Architecture
-- **Modular Design** - Separate components for easy maintenance
-- **Error Handling** - Comprehensive error recovery
-- **Logging System** - Detailed operation logs
-- **Configuration Management** - Flexible settings system
+- **Python**: 3.8 or higher
+- **RAM**: 2GB minimum, 4GB recommended
+- **Storage**: 1GB free space
+- **Internet**: Stable connection required
 
 ## 📞 Support
 
-### Getting Help
-- **Documentation** - Comprehensive setup guides included
-- **Error Logs** - Check `enhanced_trading_bot.log` for issues
-- **Demo Mode** - Test all features safely
-- **Configuration Examples** - Sample configs provided
+For questions, issues, or contributions:
+- **GitHub Issues**: Report bugs and request features
+- **Documentation**: Check the config.py.example file
+- **Community**: Share experiences and strategies
 
-### Common Issues
-- **API Key Errors** - Verify your OpenAI/Claude API keys
-- **Network Issues** - Check internet connection for market data
-- **Permission Errors** - Ensure proper file permissions
-- **Port Conflicts** - Default port 5005, change if needed
+## 📄 License
 
-## 🎯 Roadmap
-
-### Planned Features
-- **Advanced Charting** - TradingView integration
-- **More AI Models** - Additional AI provider support
-- **Mobile App** - Native mobile application
-- **Social Trading** - Copy trading functionality
-- **Advanced Analytics** - Machine learning insights
-
-### Current Version: 2.0
-- ✅ Dual AI Provider Support
-- ✅ Professional Dashboard
-- ✅ 70+ Cryptocurrency Support
-- ✅ Advanced Risk Management
-- ✅ Real-time WebSocket Updates
+This project is licensed for educational purposes only. See the LICENSE file for details.
 
 ---
 
-## 🚨 Final Warning
-
-**CRYPTOCURRENCY TRADING IS EXTREMELY RISKY**
-
-- Only trade with money you can afford to lose completely
-- Past performance does not guarantee future results
-- AI recommendations are not financial advice
-- Always do your own research before trading
-- Consider consulting with a financial advisor
-
-**The developers are not responsible for any financial losses.**
-
----
-
-*Built with ❤️ for the crypto trading community*
+**⚠️ REMEMBER: Always start with demo mode and never invest more than you can afford to lose!**
