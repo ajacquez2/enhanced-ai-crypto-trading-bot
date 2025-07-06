@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 Enhanced AI Crypto Trading Bot</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: white;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .status-bar {
+            background: rgba(255,255,255,0.95);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .status-item {
+            text-align: center;
+        }
+        
+        .status-label {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .status-value {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .card h3 {
+            margin-bottom: 15px;
+            color: #333;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        .portfolio-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .portfolio-item {
+            text-align: center;
+            padding: 15px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 10px;
+            color: white;
+        }
+        
+        .portfolio-item h4 {
+            font-size: 0.9em;
+            margin-bottom: 5px;
+            opacity: 0.9;
+        }
+        
+        .portfolio-item .value {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        
+        .crypto-analysis {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .crypto-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            margin-bottom: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .crypto-symbol {
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .crypto-price {
+            color: #666;
+        }
+        
+        .crypto-decision {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        .decision-buy {
+            background: #28a745;
+            color: white;
+        }
+        
+        .decision-sell {
+            background: #dc3545;
+            color: white;
+        }
+        
+        .decision-hold {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .confidence-bar {
+            width: 60px;
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 5px;
+        }
+        
+        .confidence-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb, #0abde3);
+            transition: width 0.3s ease;
+        }
+        
+        .trades-log {
+            grid-column: 1 / -1;
+        }
+        
+        .trade-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            margin-bottom: 8px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            font-size: 0.9em;
+        }
+        
+        .trade-buy {
+            border-left: 4px solid #28a745;
+        }
+        
+        .trade-sell {
+            border-left: 4px solid #dc3545;
+        }
+        
+        .controls {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            margin: 0 10px;
+            transition: transform 0.2s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .connection-status {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+        
+        .connected {
+            background: #28a745;
+            color: white;
+        }
+        
+        .disconnected {
+            background: #dc3545;
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .status-bar {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="connection-status" id="connectionStatus">🔄 Connecting...</div>
+    
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Enhanced AI Crypto Trading Bot</h1>
+            <p>Professional-Grade Cryptocurrency Trading with Dual AI Integration</p>
+        </div>
+        
+        <div class="status-bar">
+            <div class="status-item">
+                <div class="status-label">AI Provider</div>
+                <div class="status-value" id="aiProvider">Loading...</div>
+            </div>
+            <div class="status-item">
+                <div class="status-label">Trading Mode</div>
+                <div class="status-value" id="tradingMode">Loading...</div>
+            </div>
+            <div class="status-item">
+                <div class="status-label">Total Cryptos</div>
+                <div class="status-value">70+</div>
+            </div>
+            <div class="status-item">
+                <div class="status-label">Last Update</div>
+                <div class="status-value" id="lastUpdate">--:--:--</div>
+            </div>
+        </div>
+        
+        <div class="dashboard-grid">
+            <div class="card">
+                <h3>💰 Portfolio Overview</h3>
+                <div class="portfolio-summary">
+                    <div class="portfolio-item">
+                        <h4>Cash Balance</h4>
+                        <div class="value" id="cashBalance">$0.00</div>
+                    </div>
+                    <div class="portfolio-item">
+                        <h4>Total Value</h4>
+                        <div class="value" id="totalValue">$0.00</div>
+                    </div>
+                    <div class="portfolio-item">
+                        <h4>Active Positions</h4>
+                        <div class="value" id="activePositions">0</div>
+                    </div>
+                    <div class="portfolio-item">
+                        <h4>Total Trades</h4>
+                        <div class="value" id="totalTrades">0</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>🤖 AI Analysis Feed</h3>
+                <div class="crypto-analysis" id="cryptoAnalysis">
+                    <div style="text-align: center; color: #666; padding: 20px;">
+                        Waiting for AI analysis...
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card trades-log">
+                <h3>📊 Recent Trades</h3>
+                <div id="tradesLog">
+                    <div style="text-align: center; color: #666; padding: 20px;">
+                        No trades yet
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button class="btn" onclick="forceAnalysis()">🔄 Force Analysis</button>
+            <button class="btn" onclick="refreshData()">📊 Refresh Data</button>
+        </div>
+    </div>
+    
+    <script>
+        // Socket.IO connection
+        const socket = io();
+        
+        // Connection status
+        socket.on('connect', function() {
+            document.getElementById('connectionStatus').textContent = '🟢 Connected';
+            document.getElementById('connectionStatus').className = 'connection-status connected';
+        });
+        
+        socket.on('disconnect', function() {
+            document.getElementById('connectionStatus').textContent = '🔴 Disconnected';
+            document.getElementById('connectionStatus').className = 'connection-status disconnected';
+        });
+        
+        // Status updates
+        socket.on('status', function(data) {
+            document.getElementById('aiProvider').textContent = data.ai_provider.toUpperCase();
+            document.getElementById('tradingMode').textContent = data.mode.toUpperCase();
+            updatePortfolio(data.portfolio);
+        });
+        
+        // Portfolio updates
+        socket.on('portfolio_update', function(data) {
+            updatePortfolio(data);
+        });
+        
+        // Crypto analysis updates
+        socket.on('crypto_analysis', function(data) {
+            addCryptoAnalysis(data);
+            document.getElementById('lastUpdate').textContent = data.timestamp;
+        });
+        
+        function updatePortfolio(portfolio) {
+            document.getElementById('cashBalance').textContent = `$${portfolio.cash_balance.toFixed(2)}`;
+            document.getElementById('totalValue').textContent = `$${portfolio.total_value.toFixed(2)}`;
+            document.getElementById('activePositions').textContent = Object.keys(portfolio.positions || {}).length;
+            document.getElementById('totalTrades').textContent = portfolio.total_trades || 0;
+            
+            // Update trades log
+            updateTradesLog(portfolio.trades || []);
+        }
+        
+        function addCryptoAnalysis(data) {
+            const analysisContainer = document.getElementById('cryptoAnalysis');
+            
+            // Create new analysis item
+            const item = document.createElement('div');
+            item.className = 'crypto-item';
+            
+            const changeColor = data.change_24h >= 0 ? '#28a745' : '#dc3545';
+            const changeSymbol = data.change_24h >= 0 ? '+' : '';
+            
+            item.innerHTML = `
+                <div>
+                    <div class="crypto-symbol">${data.symbol}</div>
+                    <div class="crypto-price">$${data.price.toFixed(4)} <span style="color: ${changeColor}">(${changeSymbol}${data.change_24h.toFixed(2)}%)</span></div>
+                </div>
+                <div style="text-align: right;">
+                    <div class="crypto-decision decision-${data.decision.toLowerCase()}">${data.decision}</div>
+                    <div class="confidence-bar">
+                        <div class="confidence-fill" style="width: ${data.confidence * 100}%"></div>
+                    </div>
+                    <div style="font-size: 0.8em; color: #666; margin-top: 2px;">${(data.confidence * 100).toFixed(0)}%</div>
+                </div>
+            `;
+            
+            // Add to top of list
+            if (analysisContainer.children.length === 1 && analysisContainer.children[0].textContent.includes('Waiting')) {
+                analysisContainer.innerHTML = '';
+            }
+            
+            analysisContainer.insertBefore(item, analysisContainer.firstChild);
+            
+            // Keep only last 10 items
+            while (analysisContainer.children.length > 10) {
+                analysisContainer.removeChild(analysisContainer.lastChild);
+            }
+        }
+        
+        function updateTradesLog(trades) {
+            const tradesContainer = document.getElementById('tradesLog');
+            
+            if (trades.length === 0) {
+                tradesContainer.innerHTML = '<div style="text-align: center; color: #666; padding: 20px;">No trades yet</div>';
+                return;
+            }
+            
+            tradesContainer.innerHTML = '';
+            
+            // Show last 5 trades
+            trades.slice(-5).reverse().forEach(trade => {
+                const item = document.createElement('div');
+                item.className = `trade-item trade-${trade.action}`;
+                
+                const timestamp = new Date(trade.timestamp).toLocaleTimeString();
+                
+                item.innerHTML = `
+                    <div>
+                        <strong>${trade.action.toUpperCase()}</strong> ${trade.symbol.toUpperCase()}
+                        <span style="color: #666; margin-left: 10px;">${timestamp}</span>
+                    </div>
+                    <div>
+                        <strong>$${trade.amount.toFixed(2)}</strong>
+                        <span style="color: #666; margin-left: 10px;">${trade.ai_provider}</span>
+                    </div>
+                `;
+                
+                tradesContainer.appendChild(item);
+            });
+        }
+        
+        function forceAnalysis() {
+            socket.emit('force_analysis');
+        }
+        
+        function refreshData() {
+            fetch('/api/status')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('aiProvider').textContent = data.ai_provider.toUpperCase();
+                    document.getElementById('tradingMode').textContent = data.mode.toUpperCase();
+                    updatePortfolio(data.portfolio);
+                })
+                .catch(error => console.error('Error refreshing data:', error));
+        }
+        
+        // Auto-refresh every 30 seconds
+        setInterval(refreshData, 30000);
+        
+        // Initial data load
+        refreshData();
+    </script>
+</body>
+</html>
